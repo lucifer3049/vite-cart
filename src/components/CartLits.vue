@@ -1,8 +1,7 @@
 <template>
     <!-- 購物車 -->
     <div
-        class=" max-w-xl mx-auto bg-white rounded-xl shadow-md overflow-hidden  auto-cols-max md:container md:mx-auto mt-10">
-
+        class="max-w-xl mx-auto bg-white rounded-xl shadow-md overflow-hidden auto-cols-max md:container md:mx-auto mt-10 ">
         <div class="grid grid-cols-2 gap-4 place-content-around h-20">
             <h1 class="text-lg text-sky-500">購物車</h1>
             <div class="flex justify-end">
@@ -11,12 +10,12 @@
                     @click="cartStore.deleteAllCarts">全部刪除</button>
             </div>
         </div>
-        <table class="table-auto border-collapse w-full  ">
-            <thead>
-                <tr class="flex flex-row ">
-                    <th class="px-4 py-2 "><input class="disabled:opacity-75" type="checkbox"
+        <table class="table-auto border-collapse w-full">
+            <thead class="">
+                <tr class="flex flex-row">
+                    <th class="px-4 py-2"><input class="disabled:opacity-75" type="checkbox"
                             :checked="cartStore.isAllSelected" @change="cartStore.toggleAllItems"></th>
-                    <th class="basis-1/3 px-4 py-2">課程名稱</th>
+                    <th class="basis-1/3 px-4 py-2 ">課程名稱</th>
                     <th class="basis-1/3 px-4 py-2">課程圖片</th>
                     <th class="basis-1/3 px-4 py-2">價格</th>
                     <th class="basis-1/3 px-4 py-2">編輯</th>
@@ -28,24 +27,25 @@
                         <input class="disabled:opacity-75" type="checkbox" :checked="item.selected"
                             @change="cartStore.toggleItemSelection(item)">
                     </td>
-                    <td class="basis-1/3 border px-4 py-2">
-                        <h4 class="size-32 w-60 mx-auto align-middle">{{ item.product.name }}</h4>
-                    </td>
-                    <td class="basis-1/3 border px-4 py-2">
-                        <img :src="item.product.imageUrl" alt="" class="h-32 w-32 mx-auto">
-                    </td>
-                    <td class="basis-1/3 border px-4 py-2 mx-auto">
-                        <p class="">價格: NT$ {{ item.price }}</p>
+                    <td class="basis-1/3 border px-4 py-2  truncate md:basis-1/3 ">
+                        <h4 class="w-auto mx-auto align-middle text-wrap">{{ item.product.name }}</h4>
                     </td>
                     <td class="basis-1/3 border px-4 py-2 ">
-                        <button type="button" class="text-center"
+                        <!-- h-32 w-32  -->
+                        <img :src="item.product.imageUrl" alt="" class="mx-auto bg-auto bg-no-repeat bg-center ">
+                    </td>
+                    <td class="basis-1/3 border px-4 py-2 ">
+                        <p class="">價格: NT$ {{ item.price }}</p>
+                    </td>
+                    <td class="basis-1/3 border px-4 py-2 md:basis-1/3 ">
+                        <button type="button" class="mx-auto"
                             @click.prevent="cartStore.removeCartItem(item.id)"><span>X</span></button>
                     </td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr class="w-full max-w-96">
-                    <td class="flex justify-end">總金額:{{ cartStore.totalAmount }}</td>
+                    <td class="flex justify-end pr-3">總金額:{{ cartStore.totalAmount }}</td>
                 </tr>
                 <tr class="w-full max-w-96">
                     <td class="flex justify-end">
