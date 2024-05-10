@@ -9,12 +9,14 @@ export const useProductStore = defineStore('product', {
     },
     actions: {
         async getProduct() {
-            const url = `https://run.mocky.io/v3/dbe24bc0-41fa-4d1d-86e5-81b1b375c779`
+            // const url = `https://simplejsoncms.com/api/dd3jn7r0jte`
+            const url = '/api';
             try {
                 const response = await axios.get(url);
                 this.products = response.data;
                 console.log(this.products);
             } catch (error) {
+                console.log(error);
                 alert('無課程資訊');
             }
         }
